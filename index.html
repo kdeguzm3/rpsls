@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    
+    <script>
+    
+        let rpsLogic = {
+            choices: ["rock", "paper", "scissors", "lizard", "spock"],
+            rock: {
+                winAgainst: ["scissors", "lizard"],
+                loseAgainst: ["paper", "spock"],
+            },
+            paper: {
+                winAgainst: ["rock", "spock"],
+                loseAgainst: ["lizard", "scissors"],
+            },
+            scissors: {
+                winAgainst: ["paper", "lizard"],
+                loseAgainst: ["rock", "spock"],
+            },
+            lizard: {
+                winAgainst: ["paper", "spock"],
+                loseAgainst: ["rock", "scissors"],
+            },
+            spock: {
+                winAgainst: ["scissors", "rock"],
+                loseAgainst: ["paper", "lizard"],
+            },
+
+
+        }
+
+        let win = 0;
+        let lose = 0;
+        let draw = 0;
+        let userChoice = "";
+        let computerChoice = "";
+
+        for (let i = 0; i < 10; i++){
+            if (i === 0) {
+                alert("Let's play Rock Paper Scissors Lizard Spock!");
+            }
+            else {
+            alert("Wins: " + win + "\nLosses: " + lose + "\nDraw: " + draw);
+            }
+            
+            while (rpsLogic.choices.includes(userChoice) === false){
+            userChoice = prompt("What is your choice?\nrock\npaper\nscissors\nlizard\nspock");
+            userChoice = userChoice.toLowerCase();
+            }
+
+            computerChoice = Math.floor(Math.random() * rpsLogic.choices.length);
+            computerChoice = rpsLogic.choices[computerChoice];
+            alert("You chose: " + userChoice + "\nThe Computer chose: " + computerChoice);
+            if (userChoice == computerChoice){
+                alert("It's a draw!");
+                draw++;
+            }
+            else if (rpsLogic[userChoice].winAgainst.includes(computerChoice)) {
+                alert("You win!");
+                win++;
+            }
+            else if (rpsLogic[userChoice].loseAgainst.includes(computerChoice)) {
+                alert("You lose!");
+                lose++;
+            }
+
+            userChoice = "";
+        }
+
+        alert("Thanks for Playing!\nResults:\n  Wins: " + win + "\n  Losses: " + lose + "\n  Draws: " + draw);
+    
+    </script>
+</body>
+</html>
