@@ -9,7 +9,7 @@
 <body>
     
     <script>
-    
+        //This contains the logic of the game
         let rpsLogic = {
             choices: ["rock", "paper", "scissors", "lizard", "spock"],
             rock: {
@@ -35,13 +35,14 @@
 
 
         }
-
+        //initializing game variables
         let win = 0;
         let lose = 0;
         let draw = 0;
         let userChoice = "";
         let computerChoice = "";
 
+        // here starts the games process
         for (let i = 0; i < 10; i++){
             if (i === 0) {
                 alert("Let's play Rock Paper Scissors Lizard Spock!");
@@ -49,15 +50,21 @@
             else {
             alert("Wins: " + win + "\nLosses: " + lose + "\nDraw: " + draw);
             }
-            
+        
+            // This part checks whether the user's input is a valid choice.
+            // At the end of the loop, I have to re initialize the userChoice to empty so the while evaluates to false
             while (rpsLogic.choices.includes(userChoice) === false){
             userChoice = prompt("What is your choice?\nrock\npaper\nscissors\nlizard\nspock");
             userChoice = userChoice.toLowerCase();
             }
 
+            //computer makes its choice here
             computerChoice = Math.floor(Math.random() * rpsLogic.choices.length);
             computerChoice = rpsLogic.choices[computerChoice];
             alert("You chose: " + userChoice + "\nThe Computer chose: " + computerChoice);
+            
+            //evaluates whether the player wins, draws, or loses
+            //alerts the result for the round
             if (userChoice == computerChoice){
                 alert("It's a draw!");
                 draw++;
@@ -74,6 +81,7 @@
             userChoice = "";
         }
 
+        //Alerts the result for the whole game
         alert("Thanks for Playing!\nResults:\n  Wins: " + win + "\n  Losses: " + lose + "\n  Draws: " + draw);
     
     </script>
